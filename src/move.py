@@ -2,6 +2,7 @@
 import RPi.GPIO as GPIO
 import socket
 import time
+import typing
 
 GPIO.setmode(GPIO.BCM)
 
@@ -46,7 +47,7 @@ def move_direction(state_box: List[bool]) -> None:
     pwm_ENA.ChangeDutyCycle(20)
 
 
-def stop():
+def stop() -> None:
     pwm_ENB.ChangeDutyCycle(0)
     pwm_ENA.ChangeDutyCycle(0)
 
