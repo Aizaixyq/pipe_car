@@ -65,7 +65,7 @@ def ctrl_server():
         if not data or data.decode('utf-8') == 'exit':
             break
         elif data.decode('utf-8') in dir:
-            move_direction(dir[data])
+            move_direction(dir[data.decode('utf-8')])
     sock.send(b"disconnect")
     sock.close()
     print("disconnect")
