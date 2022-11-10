@@ -17,7 +17,8 @@ IN4 = 23
 ENA = 13
 ENB = 22
 
-dir = {"go":[True, True], "back":[False, False], "right":[True, False], "left":[False, True]}
+#go back right left
+dir = {"g":[True, True], "b":[False, False], "r":[True, False], "l":[False, True]}
 
 # 设置引脚为输出
 pin_arr = [IN1, IN2, IN3, IN4, ENA, ENB];
@@ -53,6 +54,10 @@ def stop() -> None:
     pwm_ENA.ChangeDutyCycle(0)
 
 
+def adjust_speed(speed: int) -> None:
+    pwm_ENB.ChangeDutyCycle(speed)
+    pwm_ENA.ChangeDutyCycle(speed)
+
 def ctrl_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(('192.168.3.18', 8080))
@@ -65,6 +70,8 @@ def ctrl_server():
         data = sock.recv(1024)
         if not data or data.decode('utf-8') == 'exit':
             break
+        elif data.decode('utf-8')[0] == "s":
+            adjust_speed(int(data.decode('utf-8')[1:]))
         elif data.decode('utf-8') in dir:
             move_direction(dir[data.decode('utf-8')])
         elif data.decode('utf-8') == "stop":
