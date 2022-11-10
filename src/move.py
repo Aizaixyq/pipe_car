@@ -33,10 +33,7 @@ def stop(){
 
 def ctrl_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # host = get_host_ip()
-    host = '192.168.3.18'
-    port = 8080
-    server.bind((host, port))
+    server.bind(('192.168.3.18', 8080))
     server.listen(5)
     sock, addr = server.accept()
     print('Accept new connection from %s:%s...' % addr)
