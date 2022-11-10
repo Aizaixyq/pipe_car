@@ -72,12 +72,13 @@ def ctrl_server():
         if not data or str == 'exit':
             break
         elif str[0] == "s":
-            if str[1:] == '': continue
+            if str == "stop":
+                stop()
+            if str[1:] == '': 
+                continue
             adjust_speed(int(str[1:]))
         elif str in dir:
             move_direction(dir[str])
-        elif str == "stop":
-            stop()
     
     sock.send(b"disconnect")
     sock.close()
