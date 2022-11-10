@@ -18,7 +18,7 @@ ENA = 13
 ENB = 22
 Speed = 20
 
-#go back right left
+#dir: go back right left
 dir = {"g":[True, True], "b":[False, False], "r":[True, False], "l":[False, True]}
 
 # 设置引脚为输出
