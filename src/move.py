@@ -38,8 +38,8 @@ def forward():
 
 
 def stop():
-    pwm_ENA.stop();
-    pwm_ENB.stop();
+    pwm_ENB.ChangeDutyCycle(0)
+    pwm_ENA.ChangeDutyCycle(0)
 
 
 def ctrl_server():
