@@ -39,7 +39,7 @@ def ctrl_server():
     server.listen(5)
     sock, addr = server.accept()
     print('Accept new connection from %s:%s...' % addr)
-    sock.send('Accept!')
+    sock.send(b'Accept!')
     while True:
         data = sock.recv(1024)
         if not data or data.decode('utf-8') == 'exit':
