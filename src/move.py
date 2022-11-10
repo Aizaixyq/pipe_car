@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import socket
 import time
-import typing
+from typing import List
 
 GPIO.setmode(GPIO.BCM)
 
