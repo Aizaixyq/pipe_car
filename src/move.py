@@ -2,6 +2,8 @@
 import RPi.GPIO as GPIO
 import socket
 
+GPIO.setmode(GPIO.BOARD)
+
 # 定义输出引脚
 IN1 = 19
 IN2 = 26
