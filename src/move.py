@@ -56,7 +56,8 @@ def stop() -> None:
 
 
 def adjust_speed(speed: int) -> None:
-    global Speed = speed
+    global Speed
+    Speed = speed
 
 def ctrl_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
