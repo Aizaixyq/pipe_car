@@ -16,6 +16,7 @@ IN4 = 23
 # 定义使能引脚
 ENA = 13
 ENB = 22
+Speed = 20
 
 #go back right left
 dir = {"g":[True, True], "b":[False, False], "r":[True, False], "l":[False, True]}
@@ -31,8 +32,7 @@ pwm_ENA = GPIO.PWM(ENA,500)
 #pwm启动
 pwm_ENA.start(0)
 pwm_ENB.start(0)
-pwm_ENB.ChangeDutyCycle(20)
-pwm_ENA.ChangeDutyCycle(20)
+
 
 def move_direction(state_box: List[bool]) -> None:
 
@@ -47,7 +47,8 @@ def move_direction(state_box: List[bool]) -> None:
     GPIO.output(IN2, Lad2)      # 将IN2设置为1
     GPIO.output(IN3, Rad3)     # 将IN3设置为0
     GPIO.output(IN4, Rad4)      # 将IN4设置为1
-
+    pwm_ENB.ChangeDutyCycle(Speed)
+    pwm_ENA.ChangeDutyCycle(Speed)
 
 def stop() -> None:
     pwm_ENB.ChangeDutyCycle(0)
@@ -55,8 +56,7 @@ def stop() -> None:
 
 
 def adjust_speed(speed: int) -> None:
-    pwm_ENB.ChangeDutyCycle(speed)
-    pwm_ENA.ChangeDutyCycle(speed)
+    Speed = speed
 
 def ctrl_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
