@@ -1,6 +1,7 @@
 
 import RPi.GPIO as GPIO
 import socket
+import time
 
 GPIO.setmode(GPIO.BCM)
 
@@ -19,13 +20,19 @@ pin_arr = [IN1, IN2, IN3, IN4, ENA, ENB];
 for pin in pin_arr:
     GPIO.setup(pin, GPIO.OUT)
 
-pwm_ENB = GPIO.PWM(ENB,2000)
-pwm_ENA = GPIO.PWM(ENA,2000)
+pwm_ENB = GPIO.PWM(ENB,500)
+pwm_ENA = GPIO.PWM(ENA,500)
 #pwm启动
 pwm_ENA.start(0)
 pwm_ENB.start(0)
 
 def forward():
+    GPIO.output(IN1, False)     # 将IN1设置为0
+    GPIO.output(IN2, True)      # 将IN2设置为1
+    #GPIO.output(ENA, True)      # 将ENA设置为1，启动A通道电机
+    GPIO.output(IN3, False)     # 将IN3设置为0
+    GPIO.output(IN4, True)      # 将IN4设置为1
+    #GPIO.output(ENB, True)      # 将ENB设置为1，启动B通道电机
     pwm_ENB.ChangeDutyCycle(20)
     pwm_ENA.ChangeDutyCycle(20)
 
@@ -55,3 +62,4 @@ def ctrl_server():
 
 if __name__ == "__main__":
     ctrl_server();
+    GPIO.cleanup() 
