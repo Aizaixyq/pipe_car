@@ -17,7 +17,7 @@ ENB = 22
 # 设置引脚为输出
 pin_arr = [IN1, IN2, IN3, IN4, ENA, ENB];
 for pin in pin_arr:
-    GPIO.setup(i, GPIO.OUT)
+    GPIO.setup(pin, GPIO.OUT)
 
 pwm_ENB = GPIO.PWM(ENB,2000)
 pwm_ENA = GPIO.PWM(ENA,2000)
