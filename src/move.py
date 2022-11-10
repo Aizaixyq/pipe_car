@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import socket
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 # 定义输出引脚
 IN1 = 19
