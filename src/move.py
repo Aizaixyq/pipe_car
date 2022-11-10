@@ -74,6 +74,7 @@ def ctrl_server():
         elif str[0] == "s":
             if str == "stop":
                 stop()
+                continue
             if str[1:] == '': 
                 continue
             adjust_speed(int(str[1:]))
