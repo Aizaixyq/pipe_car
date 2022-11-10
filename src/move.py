@@ -54,10 +54,10 @@ def stop() -> None:
 
 
 def ctrl_server():
-
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind(('192.168.3.18', 8080))
     server.listen(5)
+    print("Waiting connection")
     sock, addr = server.accept()
     print('Accept new connection from %s:%s...' % addr)
 
