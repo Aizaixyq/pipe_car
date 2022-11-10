@@ -4,6 +4,7 @@ import socket
 import time
 from typing import List
 
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 
 # 定义输出引脚
