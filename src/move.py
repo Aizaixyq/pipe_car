@@ -21,15 +21,15 @@ pwm_ENA = GPIO.PWM(ENA,2000)
 pwm_ENA.start(0)
 pwm_ENB.start(0)
 
-def forward(){
+def forward():
     pwm_ENB.ChangeDutyCycle(20)
     pwm_ENA.ChangeDutyCycle(20)
-}
 
-def stop(){
+
+def stop():
     pwm_ENA.stop();
     pwm_ENB.stop();
-}
+
 
 def ctrl_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
