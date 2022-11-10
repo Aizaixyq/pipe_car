@@ -72,10 +72,8 @@ def ctrl_server():
         if not data or str == 'exit':
             break
         elif str[0] == "s":
-            if str == "stop":
-                stop()
-                continue
             if str[1:] == '': 
+                stop()
                 continue
             adjust_speed(int(str[1:]))
         elif str in dir:
