@@ -15,7 +15,7 @@ IN4 = 23
 ENA = 13
 ENB = 22
 
-dir = ["go":[1, 1], "back":[0, 0], "right":[1, 0], "left":[0, 1]]
+dir = {"go":[1, 1], "back":[0, 0], "right":[1, 0], "left":[0, 1]}
 
 # 设置引脚为输出
 pin_arr = [IN1, IN2, IN3, IN4, ENA, ENB];
