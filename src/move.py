@@ -31,6 +31,8 @@ pwm_ENA = GPIO.PWM(ENA,500)
 #pwm启动
 pwm_ENA.start(0)
 pwm_ENB.start(0)
+pwm_ENB.ChangeDutyCycle(20)
+pwm_ENA.ChangeDutyCycle(20)
 
 def move_direction(state_box: List[bool]) -> None:
 
@@ -45,8 +47,6 @@ def move_direction(state_box: List[bool]) -> None:
     GPIO.output(IN2, Lad2)      # 将IN2设置为1
     GPIO.output(IN3, Rad3)     # 将IN3设置为0
     GPIO.output(IN4, Rad4)      # 将IN4设置为1
-    pwm_ENB.ChangeDutyCycle(20)
-    pwm_ENA.ChangeDutyCycle(20)
 
 
 def stop() -> None:
@@ -71,6 +71,7 @@ def ctrl_server():
         if not data or data.decode('utf-8') == 'exit':
             break
         elif data.decode('utf-8')[0] == "s":
+            if data.decode('utf-8')[1:] == '': continue
             adjust_speed(int(data.decode('utf-8')[1:]))
         elif data.decode('utf-8') in dir:
             move_direction(dir[data.decode('utf-8')])
