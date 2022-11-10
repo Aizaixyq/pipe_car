@@ -61,9 +61,9 @@ def ctrl_server():
     print('Accept new connection from %s:%s...' % addr)
     while True:
         data = sock.recv(1024)
-        if not data or data == 'exit':
+        if not data or data.decode('utf-8') == 'exit':
             break
-        elif data in dir:
+        elif data.decode('utf-8') in dir:
             move_direction(dir[data])
     sock.send(b"disconnect")
     sock.close()
