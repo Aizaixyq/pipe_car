@@ -68,14 +68,15 @@ def ctrl_server():
 
     while True:
         data = sock.recv(1024)
-        if not data or data.decode('utf-8') == 'exit':
+        str = data.decode('utf-8')
+        if not data or str == 'exit':
             break
-        elif data.decode('utf-8')[0] == "s":
-            if data.decode('utf-8')[1:] == '': continue
-            adjust_speed(int(data.decode('utf-8')[1:]))
-        elif data.decode('utf-8') in dir:
-            move_direction(dir[data.decode('utf-8')])
-        elif data.decode('utf-8') == "stop":
+        elif str[0] == "s":
+            if str[1:] == '': continue
+            adjust_speed(int(str[1:]))
+        elif str in dir:
+            move_direction(dir[str])
+        elif str == "stop":
             stop()
     
     sock.send(b"disconnect")
