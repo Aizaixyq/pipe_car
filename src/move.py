@@ -15,7 +15,9 @@ ENA = 13
 ENB = 22
 
 # 设置引脚为输出
-GPIO.setup([IN1, IN2, IN3, IN4, ENA, ENB], GPIO.OUT)
+pin_arr = [IN1, IN2, IN3, IN4, ENA, ENB];
+for pin in pin_arr:
+    GPIO.setup(i, GPIO.OUT)
 
 pwm_ENB = GPIO.PWM(ENB,2000)
 pwm_ENA = GPIO.PWM(ENA,2000)
@@ -39,7 +41,6 @@ def ctrl_server():
     server.listen(5)
     sock, addr = server.accept()
     print('Accept new connection from %s:%s...' % addr)
-    sock.send(b'Accept!')
     while True:
         data = sock.recv(1024)
         if not data or data.decode('utf-8') == 'exit':
@@ -48,6 +49,7 @@ def ctrl_server():
             forward()
         elif data.decode('utf-8') == 'stop':
             stop()
+    sock.send(b"disconnect")
     sock.close()
     print("disconnect")
 
