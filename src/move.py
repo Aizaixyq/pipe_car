@@ -56,6 +56,10 @@ def stop() -> None:
 
 
 def adjust_speed(speed: int) -> None:
+    if speed > 100:
+        speed = 100
+    elif speed < 0:
+        speed = 0
     global Speed
     Speed = speed
 
