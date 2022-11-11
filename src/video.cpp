@@ -1,5 +1,5 @@
 #include <opencv2/opencv.hpp>
-//#include <fmt/core.h>
+#include <fmt/core.h>
 
 int main()
 {
@@ -25,9 +25,14 @@ int main()
             //fmt::print("ERROR! blank frame grabbed\n");
             break;
         }
+        namedWindow("test",cv::WINDOW_AUTOSIZE);
         imshow("test", frame);
         if(cv::waitKey(1) == 'q')
             break;
+        //if(!cvgetWindowHandle("test")) break;
+        /*if(getWindowProperty("test", cv::WND_PROP_AUTOSIZE) != 1)
+            break;
+            */
     }
  
     cv::destroyWindow("test");
